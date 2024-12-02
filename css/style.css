@@ -1,0 +1,123 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #333;
+}
+
+form {
+    margin-top: 20px;
+}
+
+input {
+    margin: 10px 0;
+    padding: 10px;
+    width: 80%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.options .button {
+    margin: 10px;
+    padding: 10px 20px;
+    display: inline-block;
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.options .button:hover {
+    background-color: #0056b3;
+}
+
+/* Navbar Styles */
+.navbar {
+    position: fixed; /* Menú fijo en la parte superior */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #343a40;
+    padding: 1rem;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Centrar el menú horizontalmente */
+    gap: 1rem;
+}
+
+.navbar .menu li {
+    display: inline;
+}
+
+.navbar .menu li a {
+    text-decoration: none;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.navbar .menu li a:hover {
+    background-color: #495057;
+}
+
+/* Ajuste para el contenido principal */
+.dashboard-container {
+    padding: 2rem;
+    text-align: center;
+}
+
+.dashboard-container h1 {
+    font-size: 2rem;
+    color: #343a40;
+}
+
+.dashboard-container p {
+    font-size: 1rem;
+    color: #6c757d;
+}
