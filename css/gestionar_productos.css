@@ -19,3 +19,14 @@ select, input, textarea {
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+/* Alinear los radio buttons uno al lado del otro */
+.radio-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-left: 10vh;
+}
+.radio-group input[type="radio"] {
+    margin-left: 5px;
+}
