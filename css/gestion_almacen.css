@@ -1,0 +1,110 @@
+/* Estilos para la tabla de gestión de almacenes */
+.container-almacenes {
+    width: 80%;
+    margin: 20px auto;
+    padding: 30px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animación */
+    text-align: center; /* Alinea el contenido al centro */
+    font-size: 20px;
+    margin-top: 70px;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.crud-table {
+    width: 100%; /* Ocupar todo el ancho del contenedor */
+    margin-top: 20px; /* Espaciado superior */
+    text-align: center; /* Centra texto */
+}
+
+.container-almacenes th,
+.container-almacenes td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd; /* Líneas entre filas */
+}
+
+
+.container-almacenes th {
+    background-color: #2d52ae;
+    color: white;
+}
+
+.header-container .create-button {
+    padding: 10px 20px;
+    font-size: 14px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.container-almacenes tr:hover {
+    background-color: #f1f1f1;
+    transform: translateY(-4px); /* Levanta la tabla ligeramente */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Incrementa la sombra */
+    border-collapse: separate;
+}
+
+.container-almacenes td:last-child {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+/* Botones en la tabla */
+.button {
+    padding: 10px 12px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+.delete-button {
+    background-color: rgb(255, 62, 62);;
+}
+
+.delete-button:hover {
+    background-color: #8a1f2a;
+}
+
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pagination .button {
+    padding: 8px 16px;
+    margin: 0 5px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.pagination .button:hover {
+    background-color: #0056b3;
+}
+
+.pagination a {
+    text-decoration: none;
+}

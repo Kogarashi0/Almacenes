@@ -13,6 +13,9 @@ if (!isset($_GET['almacen_id'])) {
 
 require_once '../config.php';
 
+// Verificar si el usuario es administrador
+$is_admin = ($_SESSION['role'] === 'admin');
+
 // Obtener el ID del almacén
 $almacen_id = intval($_GET['almacen_id']);
 
@@ -44,8 +47,8 @@ $ubicaciones = $stmt_ubicaciones->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ubicaciones de <?= htmlspecialchars($almacen['nombre']); ?></title>
-    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/ubicaciones.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <?php include '../partials/navbar.php'; ?>
@@ -54,7 +57,7 @@ $ubicaciones = $stmt_ubicaciones->fetchAll(PDO::FETCH_ASSOC);
         <h1>Ubicaciones en <?= htmlspecialchars($almacen['nombre']); ?></h1>
         <table class="crud-table">
             <thead>
-                <tr>
+                <tr class="ubicaciones-tabla-color">
                     <th>Nombre</th>
                     <th>Capacidad Mínima</th>
                     <th>Capacidad Máxima</th>
@@ -77,7 +80,7 @@ $ubicaciones = $stmt_ubicaciones->fetchAll(PDO::FETCH_ASSOC);
                                     <button type="submit" class="button">Gestionar productos</button>
                                 </form>                                                                    
                                 <form style="display:inline;">
-                                <button type="button" class="delete-ubicacion" data-id="<?= $ubicacion['id']; ?> ">Borrar</button>
+                                <button type="button" class="delete-ubicacion" data-id="<?= $ubicacion['id']; ?>">Borrar</button>
                                 </form>
                             </td>
                         </tr>
@@ -94,6 +97,14 @@ $ubicaciones = $stmt_ubicaciones->fetchAll(PDO::FETCH_ASSOC);
             <form action="almacenes.view.php" method="get" style="display:inline;">
                 <button type="submit" class="button">Volver</button>
             </form>
+
+            <!-- Botón para agregar nueva ubicación -->
+            <?php if ($is_admin): ?>
+                <form action="crear_ubicacion.view.php" method="get" style="display:inline;">
+                    <input type="hidden" name="almacen_id" value="<?= $almacen_id; ?>">
+                    <button type="submit" class="create-button">Agregar Ubicación</button>
+                </form>
+            <?php endif; ?>
         </div>
     </div>
 
@@ -133,7 +144,7 @@ $ubicaciones = $stmt_ubicaciones->fetchAll(PDO::FETCH_ASSOC);
             });
         });
     });
-</script>
+    </script>
 
 </body>
 </html>

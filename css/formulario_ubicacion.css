@@ -1,0 +1,112 @@
+/* Estilo general para el contenedor del formulario */
+.form-container {
+    width: 60%; /* El formulario ocupará más parte de la pantalla */
+    margin: 50px auto;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para el header */
+.form-container h1 {
+    text-align: center;
+    color: #333;
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+/* Estilo del contenedor de los campos de formulario */
+.form-group {
+    display: flex;
+    flex-direction: column; /* Los campos estarán alineados verticalmente */
+    margin-bottom: 20px;
+}
+
+/* Etiquetas de los campos de formulario */
+.form-group label {
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Campos de texto y número */
+.form-group input[type="text"],
+.form-group input[type="number"] {
+    width: 100%; /* Los campos de texto ocuparán el 100% del espacio disponible */
+    padding: 15px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+/* Efecto al hacer foco en los campos */
+.form-group input[type="text"]:focus,
+.form-group input[type="number"]:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+/* Estilo para los botones */
+.form-actions {
+    display: flex;
+    justify-content: flex-end; /* Coloca los botones a la derecha */
+}
+
+.btn {
+    padding: 15px 35px;
+    font-size: 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+/* Botón de guardar */
+.btn.guardar {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn.guardar:hover {
+    background-color: #218838;
+}
+
+/* Botón de cancelar con tono gris */
+.btn.cancelar {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn.cancelar:hover {
+    background-color: #5a6268;
+}
+
+/* Estilo para los campos de texto y número */
+.form-group input[type="text"],
+.form-group input[type="number"] {
+    width: 100%; /* Los campos de texto ocuparán el 100% del espacio disponible */
+    padding: 15px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: all 0.3s ease; /* Transición suave para el efecto */
+}
+
+/* Efecto al pasar el mouse sobre los campos de texto */
+.form-group input[type="text"]:hover,
+.form-group input[type="number"]:hover {
+    border-color: #4CAF50; /* Cambia el borde a verde */
+    box-shadow: 0 0 8px rgba(0, 128, 0, 0.3); /* Agrega un sombreado verde */
+}
+
+/* Efecto al hacer foco en los campos */
+.form-group input[type="text"]:focus,
+.form-group input[type="number"]:focus {
+    border-color: #4CAF50; /* Borde verde al enfocar el campo */
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 128, 0, 0.3); /* Sombra verde al enfocar el campo */
+}
