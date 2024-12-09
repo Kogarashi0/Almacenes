@@ -1,0 +1,172 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th,
+table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination a {
+    margin: 0 5px;
+    padding: 8px 12px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    color: #333;
+}
+
+.pagination a.active {
+    font-weight: bold;
+    color: white;
+    background-color: #007BFF;
+}
+
+.form-limit {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+select {
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+/* Estilos para la lista de informes */
+main ul {
+    list-style: none; /* Quita los puntos de la lista */
+    padding: 0;
+    margin: 0;
+}
+
+main ul li {
+    background-color: #f9f9f9; /* Fondo claro */
+    margin-bottom: 10px; /* Espaciado entre elementos */
+    padding: 15px; /* Espaciado interno */
+    border: 1px solid #ddd; /* Borde ligero */
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 16px; /* Tamaño de texto */
+    color: #333; /* Color del texto */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    transition: background-color 0.3s ease; /* Efecto suave al pasar el cursor */
+}
+
+/* Cambia el fondo al pasar el cursor */
+main ul li:hover {
+    background-color: #f0f8ff; /* Azul claro al hover */
+}
+
+/* Títulos principales */
+main h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #444;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Ajustes para dispositivos pequeños */
+@media (max-width: 768px) {
+    main ul li {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    main h1 {
+        font-size: 20px;
+    }
+}
+
+/* Contenedor para los logs */
+.logs-container {
+    max-width: 100%;
+    max-height: 500px; /* Límite de altura para evitar que se salga de la pantalla */
+    overflow-y: auto; /* Desplazamiento vertical */
+    margin: 0 auto 20px auto;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para controles */
+.controls {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.controls label, 
+.controls select, 
+.controls span {
+    margin: 0 5px;
+    font-size: 14px;
+    color: #555;
+}
+
+/* Paginación */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.pagination button {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.pagination button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.pagination button:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+
+.pagination span {
+    font-size: 14px;
+    color: #555;
+}

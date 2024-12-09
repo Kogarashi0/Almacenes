@@ -43,7 +43,6 @@ $is_admin = ($_SESSION['role'] === 'admin');
                     <th>Acciones</th>
                 </tr>
             </thead>
-            <tbody>
                 <?php
                 // Conexión a la base de datos y obtención de datos
                 require_once '../config.php';
@@ -65,20 +64,12 @@ $is_admin = ($_SESSION['role'] === 'admin');
                                     <button type="submit" class="button">Ver ubicaciones</button>
                                 </form>
 
-                                <!-- Botón para Editar -->
-                                <?php if ($is_admin): ?>
-                                    <form action="editar_almacen.php" method="get" style="display:inline;">
-                                        <input type="hidden" name="almacen_id" value="<?= $row['id']; ?>">
-                                        <button type="submit" class="button edit-button">Editar</button>
-                                    </form>
-                                <?php endif; ?>
-
                                 <!-- Botón para Borrar -->
                                 <?php if ($is_admin): ?>
-                                    <form action="../controllers/almacenes_controller.php" method="POST" style="display:inline;">
+                                <form id="deleteForm-<?= $row['id']; ?>" action="../controllers/eliminar_almacen.php" method="POST" style="display:inline;">
                                         <input type="hidden" name="almacen_id" value="<?= $row['id']; ?>">
-                                        <button type="submit" name="accion" value="borrar_almacen" class="button delete-button">Borrar</button>
-                                    </form>
+                                        <button type="button" class="button delete-button" onclick="confirmDelete(<?= $row['id']; ?>)">Borrar</button>
+                                </form>
                                 <?php endif; ?>
                             </td>
                         </tr>
@@ -91,5 +82,16 @@ $is_admin = ($_SESSION['role'] === 'admin');
             </tbody>
         </table>
     </div>
+
+    <script>
+    function confirmDelete(almacenId) {
+    const confirmation = confirm("¿Estás seguro de que deseas eliminar este almacén?");
+        if (confirmation) {
+            // Enviar el formulario si el usuario confirma
+            document.getElementById(`deleteForm-${almacenId}`).submit();
+        }
+    }
+    </script>
+
 </body>
 </html>

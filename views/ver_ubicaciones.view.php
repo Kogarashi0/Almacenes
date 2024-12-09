@@ -45,54 +45,95 @@ $ubicaciones = $stmt_ubicaciones->fetchAll(PDO::FETCH_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ubicaciones de <?= htmlspecialchars($almacen['nombre']); ?></title>
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/ubicaciones.css">
 </head>
 <body>
     <?php include '../partials/navbar.php'; ?>
-    <div class="container">
-        <div class="dashboard-container">
-            <h1>Ubicaciones en <?= htmlspecialchars($almacen['nombre']); ?></h1>
-            <table class="crud-table">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Capacidad Mínima</th>
-                        <th>Capacidad Máxima</th>
-                        <th>Stock Actual</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php if (!empty($ubicaciones)): 
-                        foreach ($ubicaciones as $ubicacion): ?>
-                            <tr>
-                                <td><?= htmlspecialchars($ubicacion['nombre']); ?></td>
-                                <td><?= htmlspecialchars($ubicacion['capacidad_min']); ?></td>
-                                <td><?= htmlspecialchars($ubicacion['capacidad_max']); ?></td>
-                                <td><?= htmlspecialchars($ubicacion['stock_actual']); ?></td>
-                                <td>
-                                    <!-- Botón para gestionar productos -->
-                                    <form action="gestionar_productos.view.php" method="get" style="display:inline;">
-                                        <input type="hidden" name="ubicacion_id" value="<?= $ubicacion['id']; ?>">
-                                        <button type="submit" class="button">Gestionar productos</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        <?php endforeach;
-                    else: ?>
+
+    <div class="dashboard-container">
+        <h1>Ubicaciones en <?= htmlspecialchars($almacen['nombre']); ?></h1>
+        <table class="crud-table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Capacidad Mínima</th>
+                    <th>Capacidad Máxima</th>
+                    <th>Stock Actual</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (!empty($ubicaciones)): 
+                    foreach ($ubicaciones as $ubicacion): ?>
                         <tr>
-                            <td colspan="5">No hay ubicaciones registradas para este almacén.</td>
+                            <td><?= htmlspecialchars($ubicacion['nombre']); ?></td>
+                            <td><?= htmlspecialchars($ubicacion['capacidad_min']); ?></td>
+                            <td><?= htmlspecialchars($ubicacion['capacidad_max']); ?></td>
+                            <td><?= htmlspecialchars($ubicacion['stock_actual']); ?></td>
+                            <td>
+                                <!-- Botón para gestionar productos -->
+                                <form action="gestionar_productos.view.php" method="get" style="display:inline;">
+                                    <input type="hidden" name="ubicacion_id" value="<?= $ubicacion['id']; ?>">
+                                    <button type="submit" class="button">Gestionar productos</button>
+                                </form>                                                                    
+                                <form style="display:inline;">
+                                <button type="button" class="delete-ubicacion" data-id="<?= $ubicacion['id']; ?> ">Borrar</button>
+                                </form>
+                            </td>
                         </tr>
-                    <?php endif; ?>
-                </tbody>
-            </table>
-            <div class="options">
-                <!-- Botón para regresar -->
-                <form action="almacenes.view.php" method="get" style="display:inline;">
-                    <button type="submit" class="button">Volver</button>
-                </form>
-            </div>
+                    <?php endforeach;
+                else: ?>
+                    <tr>
+                        <td colspan="5">No hay ubicaciones registradas para este almacén.</td>
+                    </tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
+        <div class="options">
+            <!-- Botón para regresar -->
+            <form action="almacenes.view.php" method="get" style="display:inline;">
+                <button type="submit" class="button">Volver</button>
+            </form>
         </div>
     </div>
-    
+
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const deleteButtons = document.querySelectorAll(".delete-ubicacion");
+
+        deleteButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                const ubicacionId = button.getAttribute("data-id");
+                const confirmation = confirm("¿Estás seguro de que deseas borrar esta ubicación?");
+
+                if (confirmation) {
+                    // Enviar solicitud para eliminar la ubicación
+                    fetch("../controllers/eliminar_ubicacion.php", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({ ubicacion_id: ubicacionId })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Eliminar la fila de la tabla
+                            button.closest("tr").remove();
+                            alert("Ubicación eliminada correctamente.");
+                        } else {
+                            alert(data.message || "Error al intentar borrar la ubicación.");
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error:", error);
+                        alert("Hubo un problema al eliminar la ubicación.");
+                    });
+                }
+            });
+        });
+    });
+</script>
+
 </body>
 </html>

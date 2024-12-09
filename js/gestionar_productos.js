@@ -1,7 +1,16 @@
+// gestionar_productos.js
+
 document.addEventListener("DOMContentLoaded", () => {
     const tipoSelect = document.getElementById("tipo");
     const dynamicFields = document.getElementById("dynamic-fields");
+    const descripcionField = document.getElementById("descripcion");
+    const descripcionLabel = descripcionField.parentElement.querySelector("label");
 
+    // Ocultar el campo de descripción general
+    descripcionLabel.style.display = "none";
+    descripcionField.style.display = "none";
+
+    // Funciones para generar opciones dinámicas
     const getUbicacionesOptions = () => {
         return ubicacionesData
             .map(
@@ -25,6 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .join("");
     };
 
+    // Plantillas para los diferentes tipos de movimiento
     const templates = {
         compra: `
             <label>Producto:</label>
@@ -79,12 +89,24 @@ document.addEventListener("DOMContentLoaded", () => {
             </select>
         `,
         venta: `
+            <label for="producto_id">Seleccionar Producto:</label>
+            <select name="producto_id" id="producto_id">
+                <option value="">Seleccione...</option>
+                ${getProductosOptions()}
+            </select>
+
             <label for="ubicacion_origen_id">Ubicación de Origen:</label>
             <select name="ubicacion_origen_id" id="ubicacion_origen_id">
                 ${getUbicacionesOptions()}
             </select>
         `,
         transferencia: `
+            <label for="producto_id">Seleccionar Producto:</label>
+            <select name="producto_id" id="producto_id">
+                <option value="">Seleccione...</option>
+                ${getProductosOptions()}
+            </select>
+
             <label for="ubicacion_origen_id">Ubicación de Origen:</label>
             <select name="ubicacion_origen_id" id="ubicacion_origen_id">
                 ${getUbicacionesOptions()}
@@ -96,13 +118,29 @@ document.addEventListener("DOMContentLoaded", () => {
             </select>
         `,
         desecho: `
+            <label for="producto_id">Seleccionar Producto:</label>
+            <select name="producto_id" id="producto_id">
+                <option value="">Seleccione...</option>
+                ${getProductosOptions()}
+            </select>
+
             <label for="ubicacion_origen_id">Ubicación de Origen:</label>
             <select name="ubicacion_origen_id" id="ubicacion_origen_id">
                 ${getUbicacionesOptions()}
             </select>
+
+            <label for="razon_desecho">Razón del Desecho:</label>
+            <select name="razon_desecho" id="razon_desecho">
+                <option value="">Seleccione una razón...</option>
+                <option value="Producto caducado">Producto caducado</option>
+                <option value="Producto dañado">Producto dañado</option>
+                <option value="Obsolescencia">Obsolescencia</option>
+                <option value="Estacionalidad">Estacionalidad</option>
+            </select>
         `,
     };
 
+    // Actualizar campos dinámicos según el tipo seleccionado
     tipoSelect.addEventListener("change", (event) => {
         const selectedTipo = event.target.value;
         dynamicFields.innerHTML = templates[selectedTipo] || "";
@@ -120,6 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    // Funciones para alternar campos
     const toggleProductoFields = () => {
         const selectFields = document.getElementById("producto_select_fields");
         const newFields = document.getElementById("producto_new_fields");
@@ -135,4 +174,9 @@ document.addEventListener("DOMContentLoaded", () => {
         selectFields.style.display = isNew ? "none" : "block";
         newFields.style.display = isNew ? "block" : "none";
     };
+
+    // Cargar validaciones desde archivo externo
+    if (typeof addValidations === "function") {
+        addValidations();
+    }
 });
